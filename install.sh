@@ -18,6 +18,8 @@ secret=$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 64 | head -n 1)
 sed -i -e "s/\[SECRET\]/$secret/g" /etc/thehive/application.conf
 sed -i -e "s/\[SECRET\]/$secret/g" /etc/cortex/application.conf
 
+wget https://dl.bintray.com/cert-bdf/thehive/report-templates.zip
+
 cd /opt/
 git clone https://github.com/TheHive-Project/Cortex-Analyzers.git
 cd /opt/Cortex-Analyzers/analyzers
