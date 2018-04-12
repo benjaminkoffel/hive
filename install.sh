@@ -17,6 +17,7 @@ echo "play.crypto.secret=\"$secret\"" >> /etc/thehive/application.conf
 echo "play.http.secret.key=\"$secret\"" >> /etc/cortex/application.conf
 cd /opt/
 git clone https://github.com/TheHive-Project/Cortex-Analyzers.git
+cd /opt/Cortex-Analyzers/analyzers
 for d in [0-9][0-9][0-9]; do python3 -m pip install -r requirements.txt; done
 find . -type d -execdir python3 -m pip install -r {}/requirements.txt ';'
 
@@ -29,4 +30,3 @@ echo "- open cortex http://localhost:9001"
 echo "- create organization, user and API key'"
 echo "- edit /etc/thehive/application.conf with API key"
 echo "- edit /etc/cortex/application.conf with /opt/Cortex-Analyzers/analyzers"
-echo "- for each analyzer exec: python3 -m pip install -r requirements.txt"
