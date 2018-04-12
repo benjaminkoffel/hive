@@ -1,4 +1,4 @@
-secret=$1
+secret=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 64 | head -n 1)
 
 apt-get update
 apt-get install -y dirmngr apt-transport-https --install-recommends
@@ -13,8 +13,11 @@ apt-get update
 apt-get install -y elasticsearch thehive cortex 
 
 echo "play.crypto.secret=\"$secret\"" >> /etc/thehive/application.conf
+echo "play.http.secret.key=\"$secret\"" >> /etc/cortex/application.conf
 cp elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 
 service elasticsearch start
 service thehive start
 service cortex start
+
+echo "CONFIGURED SECRET: $secret"
