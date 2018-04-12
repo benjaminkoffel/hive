@@ -21,7 +21,7 @@ sed -i -e "s/\[SECRET\]/$secret/g" /etc/cortex/application.conf
 cd /opt/
 git clone https://github.com/TheHive-Project/Cortex-Analyzers.git
 cd /opt/Cortex-Analyzers/analyzers
-find . -type d -execdir python2 -m pip install -r {}/requirements.txt ";"
+find . -type d -execdir python -m pip install -r {}/requirements.txt ";"
 find . -type d -execdir python3 -m pip install -r {}/requirements.txt ";"
 
 service elasticsearch start
