@@ -1,5 +1,5 @@
 apt-get update
-apt-get install -y dirmngr apt-transport-https git python3-pip --install-recommends
+apt-get install -y dirmngr apt-transport-https git python2-pip python3-pip --install-recommends
 
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key D88E42B4
 echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" > /etc/apt/sources.list.d/elastic-5.x.list
@@ -21,6 +21,7 @@ sed -i -e "s/\[SECRET\]/$secret/g" /etc/cortex/application.conf
 cd /opt/
 git clone https://github.com/TheHive-Project/Cortex-Analyzers.git
 cd /opt/Cortex-Analyzers/analyzers
+find . -type d -execdir python2 -m pip install -r {}/requirements.txt ";"
 find . -type d -execdir python3 -m pip install -r {}/requirements.txt ";"
 
 service elasticsearch start
