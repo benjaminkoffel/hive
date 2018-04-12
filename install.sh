@@ -18,7 +18,7 @@ echo "play.http.secret.key=\"$secret\"" >> /etc/cortex/application.conf
 cd /opt/
 git clone https://github.com/TheHive-Project/Cortex-Analyzers.git
 for d in [0-9][0-9][0-9]; do python3 -m pip install -r requirements.txt; done
-find . -name requirements.txt -type d -execdir python3 -m pip install -r requirements.txt ';'
+find . -type d -execdir python3 -m pip install -r {}/requirements.txt ';'
 
 # service elasticsearch start
 # service thehive start
